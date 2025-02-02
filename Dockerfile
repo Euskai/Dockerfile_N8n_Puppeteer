@@ -4,7 +4,7 @@ FROM n8nio/n8n:latest
 # Establece el directorio de trabajo
 WORKDIR /data
 
-# Instala las dependencias necesarias para Puppeteer utilizando apk (Alpine Linux)
+# Instala las dependencias necesarias para Puppeteer en Alpine Linux
 RUN apk add --no-cache \
     ca-certificates \
     fontconfig \
@@ -14,6 +14,9 @@ RUN apk add --no-cache \
     chromium \
     harfbuzz \
     ttf-freefont
+
+# Configura la variable de entorno para Puppeteer
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 # Instala Puppeteer con npm
 RUN npm install puppeteer
